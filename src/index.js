@@ -36,6 +36,8 @@ function draw() {
         for (var j = betting + 1; j <= 4; j++) tableList.item(i +    8 * j - 8).innerHTML = "";
     }
 
+    document.querySelector(".betting").innerHTML = "round " + round.toString();
+
     if (isFirst) buttonList.item(0).innerHTML = "check";
     else buttonList.item(0).innerHTML = "call";
 
@@ -58,7 +60,6 @@ function draw() {
 
     if (betting == 0) document.querySelector("#loan").disabled = false;
     else document.querySelector("#loan").disabled = true;
-    
 }
 
 function next() {
@@ -181,6 +182,22 @@ function allin() {
 function fold() {
     isfold[turn] = true;
     turnChange();
+    draw();
+}
+
+function loan() {
+    var val = 1 * document.querySelector("input").value;
+    if (val == '') alert("loan error");
+    else {
+        document.querySelector("input").value = '';
+        var t = parseInt(Math.log10(val).toString());
+        var amount = val % Math.pow(10, t - 1);
+        val = (val - amount) / Math.pow(10, t - 1);
+        var receiver = val % 10;
+        var giver = (val - val % 10) / 10;
+        chips[giver] = chips[giver] - amount;
+        chips[receiver] = chips[receiver] + amount;
+    }
     draw();
 }
 
