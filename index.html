@@ -9,6 +9,7 @@
 </head>
 <body onload="start()">
     <div class="grid">
+        <div class="player">Player</div> 
         <div class="player">1p</div>
         <div class="player">2p</div>
         <div class="player">3p</div>
@@ -16,7 +17,8 @@
         <div class="player">5p</div>
         <div class="player">6p</div>
         <div class="player">7p</div>
-        <div class="player">8p</div>
+
+        <div class="chips">chips</div>
         <div class="chips"></div>
         <div class="chips"></div>
         <div class="chips"></div>
@@ -24,6 +26,8 @@
         <div class="chips"></div>
         <div class="chips"></div>
         <div class="chips"></div>
+
+        <div class="chips">bets</div>
         <div class="chips"></div>
         <div class="chips"></div>
         <div class="chips"></div>
@@ -31,44 +35,50 @@
         <div class="chips"></div>
         <div class="chips"></div>
         <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
+        <div class="table">zero-card</div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+
+        <div class="table">three-card</div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+
+        <div class="table">four-card</div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+
+        <div class="table">five-card</div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+        <div class="table"></div>
+
+        <div class="betting" style="font-size: 1.5em">round 0</div>
         <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
-        <div class="betting"><button class="button" id="call" onclick="call()">call</button></div>
         <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
-        <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
+        <div class="betting"><button class="button" id="allin" onclick="allin()">All-in</button></div>
         <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="betting"><button class="button" id="fold" onclick="fold()">fold</button></div>
-        <div class="total"></div>
-        <div class="input"><input type="number" style="width:5vw"></div>
-        <div class="next"><button class="button" id="next" onclick="next()">next</button></div>   
-        <div class="box"> round 1 / betting #1</div>
+        <div class="betting"><input type="number" style="width:5vw"></div>
+        <div class="betting"><button class="button" id="next" onclick="next()">next</button></div>
+        <div class="betting"><button class="button" id="loan" onclick="loan()">loan</button></div>
     </div>
     <script src="src/index.js"></script>
 </body>
