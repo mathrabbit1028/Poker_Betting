@@ -8,14 +8,6 @@ body {
     overflow: hidden;
 }
 
-.box {
-    position: relative;
-    top: -90vh;
-    font-size: 3em;
-    line-height: 10vh;
-    width: 50vw;
-}
-
 .grid {
     display: grid;
     grid-template-columns: repeat(8, 10vw);
@@ -25,7 +17,7 @@ body {
     margin: 0px;
     border: 1px black solid;
     background-color: white;
-    font-size: 2em;
+    font-size: 3vh;
     text-align: center;
     line-height: 10vh;
 }
@@ -33,7 +25,7 @@ body {
     margin: 0px;
     border: 1px black solid;
     background-color: lightgoldenrodyellow;
-    font-size: 1.5em;
+    font-size: 3vh;
     text-align: center;
     line-height: 10vh;
 }
@@ -41,7 +33,7 @@ body {
     margin: 0px;
     border: 1px black solid;
     background-color: white;
-    font-size: 1.5em;
+    font-size: 3vh;
     text-align: center;
     line-height: 10vh;
 }
@@ -51,6 +43,9 @@ body {
     background-color: lightpink;
     text-align: center;
     line-height: 10vh;
+}
+#round {
+    font-size: 3vh;
 }
 
 .button {
@@ -62,7 +57,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 3vh;
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 12px;

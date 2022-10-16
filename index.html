@@ -7,7 +7,7 @@
     <title>Poker</title>
     <link rel="stylesheet" href="src/style.css"/>
 </head>
-<body onload="start()">
+<body onload="load()">
     <div class="grid">
         <div class="player">Player</div> 
         <div class="player">1p</div>
@@ -19,22 +19,23 @@
         <div class="player">7p</div>
 
         <div class="chips">chips</div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+
+        <div class="chips">bets</div>
+        <div class="chips">small</div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
+        <div class="chips">large</div>
+        <div class="chips"><input type="number" style="width:5vw"></div>
         <div class="chips"></div>
         <div class="chips"></div>
         <div class="chips"></div>
 
-        <div class="chips">bets</div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
-        <div class="chips"></div>
         <div class="table">zero-card</div>
         <div class="table"></div>
         <div class="table"></div>
@@ -71,7 +72,7 @@
         <div class="table"></div>
         <div class="table"></div>
 
-        <div class="betting" style="font-size: 1.5em">round 0</div>
+        <div class="betting" id="round">round 0</div>
         <div class="betting"><button class="button" id="check" onclick="check()">check</button></div>
         <div class="betting"><button class="button" id="raise" onclick="raise()">raise</button></div>
         <div class="betting"><button class="button" id="allin" onclick="allin()">All-in</button></div>

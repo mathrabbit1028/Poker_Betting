@@ -1,5 +1,4 @@
-var number = 7;
-var initial = 500;
+var number = -1;
 var chips = [0];
 var bets = [[0], [0], [0], [0], [0]];
 var round = 0, betting = 0;
@@ -12,6 +11,7 @@ var playerList = document.querySelectorAll(".player");
 var chipsList = document.querySelectorAll(".chips");
 var tableList = document.querySelectorAll(".table");
 var buttonList = document.querySelectorAll(".button");
+var bettingList = document.querySelectorAll(".bettingList");
 
 function draw() {
     for (var i = 1; i <= number; i++) {
@@ -20,20 +20,23 @@ function draw() {
         if (i == turn) playerList.item(i).style.backgroundColor = "gray";
         else playerList.item(i).style.backgroundColor = "white";
         if (isfold[i]) playerList.item(i).style.setProperty("text-decoration", "line-through");
+        else playerList.item(i).style.setProperty("text-decoration", "none");
     }
 
-    for (var i = 1; i <= number; i++) {
-        chipsList.item(i).innerHTML = chips[i];
+    for (var i = 1; i <= 7; i++) {
+        if (i <= number) chipsList.item(i).innerHTML = chips[i];
+        else chipsList.item(i).innerHTML = "";
     }
-    for (var i = 1; i <= number; i++) {
+    for (var i = 1; i <= 7; i++) {
         bets[0][i] = 0;
         for (var j = 1; j <= betting; j++) bets[0][i] = bets[0][i] + bets[j][i];
-        chipsList.item(i + 8).innerHTML = bets[0][i];
+        if (i <= number) chipsList.item(i + 8).innerHTML = bets[0][i];
+        else chipsList.item(i + 8).innerHTML = "";
     }
 
     for (var i = 1; i <= number; i++) {
         for (var j = 1; j <= betting; j++) tableList.item(i + 8 * j - 8).innerHTML = bets[j][i];
-        for (var j = betting + 1; j <= 4; j++) tableList.item(i +    8 * j - 8).innerHTML = "";
+        for (var j = betting + 1; j <= 4; j++) tableList.item(i + 8 * j - 8).innerHTML = "";
     }
 
     document.querySelector(".betting").innerHTML = "round " + round.toString();
@@ -63,62 +66,84 @@ function draw() {
 }
 
 function next() {
-    keep = true;
-    isFirst = true;
-    if (betting == 0) {
-        for (var i = 1; i <= number; i++) {
-            for (var j = 0; j <= 4; j++) bets[j][i] = 0;
+    if (number == -1) {
+        inputList = document.querySelectorAll("input");
+        for (var i = 0; i < 7; i++) {
+            var val = inputList.item(i).value;
+            if (val == '') break;
+            chips.push(1 * inputList.item(i).value);
         }
-        dealer = dealer % number + 1;
-        round = round + 1;
-        betting = 1;
-        smallPlayer = dealer % number + 1;
-        bigPlayer = (dealer + 1) % number + 1;
-        turn = bigPlayer;
-        bets[1][smallPlayer] = 1 * small;
-        bets[1][bigPlayer] = 1 * large;
-        now = 1 * large;
-    }
-    else if (0 < betting && betting < 4) {
-        turn = smallPlayer;
-        betting++;
-        now = 0;
-        for (var i = 1; i <= number; i++) ch[i] = 0;
-    }
-    else if (betting >= 4) {
-        keep = false;
-        var val = 1 * document.querySelector("input").value;
-        if (val == '') {
-            alert("winner error");
-        }
+        if (inputList.item(7).value == '') alert("gamestart error");
+        else if (inputList.item(8).value == '') alert("gamestart error");
+        else if (i <= 1) alert("gamestart error");
         else {
-            document.querySelector("input").value = '';
-            var cnt = 0, iswin = [false];
-            for (var i = 1; i <= number; i++) iswin.push(false);
-            while (val > 0) {
-                cnt++;
-                iswin[val % 10] = true;
-                val = (val - val % 10) / 10;
-            }
+            number = i;
+            small = 1 * inputList.item(7).value;
+            large = 1 * inputList.item(8).value;
+            for (var i = 1; i <= number; i++) for (var j = 0; j <= 4; j++) bets[j].push(0);
+            for (var i = 1; i <= number; i++) isfold.push(false);
+            for (var i = 1; i <= number; i++) ch.push(0);
+            draw();
+        }
+    }
+    else {
+        keep = true;
+        isFirst = true;
+        if (betting == 0) {
             for (var i = 1; i <= number; i++) {
-                if (iswin[i]) {
-                    for (var j = 1; j <= number; j++) {
-                        if (bets[0][i] * cnt < bets[0][j]) {
-                            chips[i] = chips[i] + bets[0][i];
-                            chips[j] = chips[j] - bets[0][i];
-                        }
-                        else {
-                            chips[i] = chips[i] + bets[0][j] / cnt;
-                            chips[j] = chips[j] - bets[0][j] / cnt;
+                for (var j = 0; j <= 4; j++) bets[j][i] = 0;
+            }
+            dealer = dealer % number + 1;
+            round = round + 1;
+            betting = 1;
+            smallPlayer = dealer % number + 1;
+            bigPlayer = (dealer + 1) % number + 1;
+            turn = bigPlayer;
+            bets[1][smallPlayer] = 1 * small;
+            bets[1][bigPlayer] = 1 * large;
+            now = 1 * large;
+        }
+        else if (0 < betting && betting < 4) {
+            turn = smallPlayer;
+            betting++;
+            now = 0;
+            for (var i = 1; i <= number; i++) ch[i] = 0;
+        }
+        else if (betting >= 4) {
+            keep = false;
+            var val = 1 * document.querySelector("input").value;
+            if (val == '') {
+                alert("winner error");
+            }
+            else {
+                document.querySelector("input").value = '';
+                var cnt = 0, iswin = [false];
+                for (var i = 1; i <= number; i++) iswin.push(false);
+                while (val > 0) {
+                    cnt++;
+                    iswin[val % 10] = true;
+                    val = (val - val % 10) / 10;
+                }
+                for (var i = 1; i <= number; i++) {
+                    if (iswin[i]) {
+                        for (var j = 1; j <= number; j++) {
+                            if (bets[0][i] * cnt < bets[0][j]) {
+                                chips[i] = chips[i] + bets[0][i];
+                                chips[j] = chips[j] - bets[0][i];
+                            }
+                            else {
+                                chips[i] = chips[i] + bets[0][j] / cnt;
+                                chips[j] = chips[j] - bets[0][j] / cnt;
+                            }
                         }
                     }
+                    isfold[i] = false;
                 }
-                isfold[i] = false;
+                betting = 0;
             }
-            betting = 0;
         }
+        draw();
     }
-    draw();
 }
 
 function turnChange() {
@@ -201,10 +226,10 @@ function loan() {
     draw();
 }
 
-function start() {
-    for (var i = 1; i <= number; i++) chips.push(initial);
-    for (var i = 1; i <= number; i++) for (var j = 0; j <= 4; j++) bets[j].push(0);
-    for (var i = 1; i <= number; i++) isfold.push(false);
-    for (var i = 1; i <= number; i++) ch.push(0);
-    draw();
+function load() {
+    buttonList.item(0).disabled = true;
+    buttonList.item(1).disabled = true;
+    buttonList.item(2).disabled = true;
+    buttonList.item(3).disabled = true;
+    buttonList.item(5).disabled = true;
 }
