@@ -11,7 +11,7 @@ body {
 .grid {
     display: grid;
     grid-template-columns: repeat(8, 10vw);
-    grid-template-rows: repeat(8, 10vh);
+    grid-template-rows: repeat(8, 9vh);
 }
 .player {
     margin: 0px;
@@ -19,7 +19,7 @@ body {
     background-color: white;
     font-size: 3vh;
     text-align: center;
-    line-height: 10vh;
+    line-height: 9vh;
 }
 .chips {
     margin: 0px;
@@ -27,7 +27,7 @@ body {
     background-color: lightgoldenrodyellow;
     font-size: 3vh;
     text-align: center;
-    line-height: 10vh;
+    line-height: 9vh;
 }
 .table {
     margin: 0px;
@@ -35,14 +35,14 @@ body {
     background-color: white;
     font-size: 3vh;
     text-align: center;
-    line-height: 10vh;
+    line-height: 9vh;
 }
 .betting {
     margin: 0px;
     border: 1px black solid;
     background-color: lightpink;
     text-align: center;
-    line-height: 10vh;
+    line-height: 9vh;
 }
 #round {
     font-size: 3vh;
